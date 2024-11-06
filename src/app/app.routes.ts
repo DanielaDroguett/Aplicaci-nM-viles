@@ -10,4 +10,8 @@ export const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full',
   },
+  {
+    path: 'animal-form',
+    loadComponent: () => import('./animal-form/animal-form.page').then( m => m.AnimalFormPage)
+  },
 ];
