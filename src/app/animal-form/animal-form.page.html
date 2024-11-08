@@ -1,17 +1,13 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Registrar Nuevo Animal</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="cerrarFormulario()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
+    <ion-title>Registrar una nueva mascota</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button color="primary" expand="full" (click)="goHome()">Volver al Home</ion-button>
-
   <form (ngSubmit)="onSubmit()">
     <ion-item>
       <ion-label position="floating">Nombre</ion-label>
