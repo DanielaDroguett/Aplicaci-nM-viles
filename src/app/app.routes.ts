@@ -11,7 +11,14 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'listar-mascotas',
+    loadComponent: () => import('./pages/listar-mascotas/listar-mascotas.page').then( m => m.ListarMascotasPage)
+  },
+
+
+  {
     path: 'animal-form',
     loadComponent: () => import('./animal-form/animal-form.page').then( m => m.AnimalFormPage)
   },
 ];
+
