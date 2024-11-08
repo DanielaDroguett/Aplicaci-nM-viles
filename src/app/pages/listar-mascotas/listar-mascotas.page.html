@@ -1,8 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Mascotas</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de mascotas</ion-title>
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -10,19 +15,14 @@
       <ion-title size="large">listar-mascotas</ion-title>
     </ion-toolbar>
   </ion-header>
-  
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Lista de mascotas</ion-card-title>
-      <ion-card-subtitle>Encuentra aquí el detalle de todas las mascotas registradas.</ion-card-subtitle>
-    </ion-card-header>
 
+  <ion-card>
     <!-- Lista de mascotas -->
     <ion-card-content>
       <ion-list>
         <!-- Obtener la información de page.ts -->
-        <ion-item *ngFor="let mascota of mascotas;let i = index">
-          <!-- Primera columna -->
+        <ion-item *ngFor="let mascota of mascotas; let i = index">
+          <!-- Primera fila -->
           <ion-row>
             <ion-col size="12" size-sm="6">
               <ion-label><strong>Nombre:</strong> {{mascota.nombre}}</ion-label>
@@ -31,8 +31,8 @@
               <ion-label><strong>Especie:</strong> {{mascota.especie}}</ion-label>
             </ion-col>
           </ion-row>
-          
-          <!-- Segunda columna columna-->
+
+          <!-- Segunda fila-->
           <ion-row>
             <ion-col size="12" size-sm="6">
               <ion-label><strong>Raza:</strong> {{mascota.raza}}</ion-label>
@@ -42,7 +42,7 @@
             </ion-col>
           </ion-row>
 
-          <!-- Tercera columna -->
+          <!-- Tercera fila -->
           <ion-row>
             <ion-col size="12" size-sm="6">
               <ion-label><strong>Sexo:</strong> {{mascota.sexo}}</ion-label>
@@ -52,11 +52,14 @@
             </ion-col>
           </ion-row>
 
-          <!-- Botón eliminar-->
-          <ion-button color="warning" slot="end" (click)="eliminarMascotas(i)" expand="block" shape="round">
-            Eliminar
-          </ion-button>
-          
+          <!-- Botón eliminar centrado -->
+          <ion-row>
+            <ion-col size="12" class="ion-text-center">
+              <ion-button color="warning" (click)="eliminarMascotas(i)" expand="block" shape="round">
+                Eliminar
+              </ion-button>
+            </ion-col>
+          </ion-row>
         </ion-item>
       </ion-list>
     </ion-card-content>

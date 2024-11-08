@@ -1,55 +1,50 @@
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonGrid, IonRow, IonCol, IonButton } from '@ionic/angular/standalone';
-import { Component, OnInit } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 
-// Definición de la interfaz 'Mascota'
-export interface Mascota {
-  nombre: String,
-  especie: String,
-  raza: String,
-  edad: Number,
-  sexo: Sexo,
-  alergias: String
-}
+import { MascotaService, Mascota } from '../../services/mascota.service';
 
-// Definición del enum (enumeración) 'Sexo'
-export enum Sexo {
-  Macho = 'Macho',
-  Hembra = 'Hembra'
-}
-
-// Definición del componente Angular y su configuración
 @Component({
+  standalone: true,
   selector: 'app-listar-mascotas',
   templateUrl: './listar-mascotas.page.html',
   styleUrls: ['./listar-mascotas.page.scss'],
-  standalone: true,
   imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,
-    IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent,
-    IonList, IonItem, IonThumbnail, IonLabel, IonGrid, IonRow, IonCol,
-    IonButton // <-- Importa IonButton aquí
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+    CommonModule,
+    FormsModule,
+    IonicModule
+  ]
 })
-
-// Componente ListarMascotasPage
 export class ListarMascotasPage implements OnInit {
-  mascotas: Mascota[] = [
-    { nombre: 'Toti', especie: 'Perro', raza: 'Beagle', edad: 3, sexo: Sexo.Hembra, alergias: 'Polvo' },
-    { nombre: 'Lucio', especie: 'Gato', raza: 'Mestizo', edad: 8, sexo: Sexo.Macho, alergias: 'Ninguna' },
-    { nombre: 'Rex', especie: 'Perro', raza: 'Labrador', edad: 5, sexo: Sexo.Macho, alergias: 'Ninguna' },
-    { nombre: 'Luna', especie: 'Gato', raza: 'Siamés', edad: 2, sexo: Sexo.Hembra, alergias: 'Polen' },
-    { nombre: 'Coco', especie: 'Conejo', raza: 'Enano', edad: 1, sexo: Sexo.Macho, alergias: 'Arachis' }
-  ];
+  mascotas: Mascota[] = [];
 
-  constructor() { }
+  constructor(private mascotaService: MascotaService, private alertController: AlertController) {}
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.mascotaService.mascotas$.subscribe((mascotas) => {
+      this.mascotas = mascotas;
+    });
+  }
 
-  eliminarMascotas(index: number) {
-    this.mascotas.splice(index, 1);
+  async eliminarMascotas(index: number) {
+    const alert = await this.alertController.create({
+      header: 'Confirmar eliminación',
+      message: `¿Estás seguro de que deseas eliminar a ${this.mascotas[index].nombre}?`,
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        },
+        {
+          text: 'Eliminar',
+          handler: () => {
+            this.mascotaService.eliminarMascota(index);
+          }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

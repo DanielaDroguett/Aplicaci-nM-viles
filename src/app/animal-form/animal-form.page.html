@@ -1,11 +1,9 @@
-<ion-header>
+<ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Registrar Nuevo Animal</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="cerrarFormulario()">
-        <ion-icon name="close"></ion-icon>
-      </ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
     </ion-buttons>
+    <ion-title>Registrar una nueva mascota</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -43,6 +41,7 @@
       <ion-textarea [(ngModel)]="animal.alergias" name="alergias"></ion-textarea>
     </ion-item>
 
-    <ion-button expand="full" type="submit">Guardar</ion-button>
+    <!-- Botón de guardar con validación -->
+    <ion-button expand="full" type="submit" [disabled]="!animal.nombre || !animal.especie">Guardar</ion-button>
   </form>
 </ion-content>

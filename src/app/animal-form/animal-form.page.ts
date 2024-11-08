@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular'; // Importa el módulo completo de Ionic
+import { FormsModule } from '@angular/forms';
+import { IonicModule } from '@ionic/angular';
+import { MascotaService, Mascota, Sexo } from '../services/mascota.service';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -11,25 +13,27 @@ import { IonicModule } from '@ionic/angular'; // Importa el módulo completo de 
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule // Usa IonicModule para incluir todos los componentes necesarios de Ionic
+    IonicModule
   ]
 })
 export class AnimalFormPage {
-  animal = {
+  animal: Mascota = {
     nombre: '',
     especie: '',
     raza: '',
-    edad: null,
-    sexo: '',
+    edad: 0,
+    sexo: Sexo.Macho,
     alergias: ''
   };
 
-  cerrarFormulario() {
-    // Lógica para cerrar el formulario
-  }
+  constructor(private mascotaService: MascotaService, private router: Router) {}
 
   onSubmit() {
-    console.log('Datos del animal:', this.animal);
-    // Lógica para guardar el formulario
+    if (this.animal.nombre && this.animal.especie) {
+      this.mascotaService.agregarMascota(this.animal);
+      this.router.navigate(['/listar-mascotas']); // Redirige a la lista de mascotas
+    } else {
+      // Mostrar una alerta de validación si faltan campos requeridos
+    }
   }
 }
