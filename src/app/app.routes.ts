@@ -14,4 +14,6 @@ export const routes: Routes = [
     path: 'animal-form',
     loadComponent: () => import('./animal-form/animal-form.page').then( m => m.AnimalFormPage)
   },
+
+  
 ];
