@@ -21,7 +21,7 @@
     <ion-card-content>
       <ion-list>
         <!-- Obtener la información de page.ts -->
-        <ion-item *ngFor="let mascota of mascotas">
+        <ion-item *ngFor="let mascota of mascotas;let i = index">
           <!-- Primera columna -->
           <ion-row>
             <ion-col size="12" size-sm="6">
@@ -52,6 +52,11 @@
             </ion-col>
           </ion-row>
 
+          <!-- Botón eliminar-->
+          <ion-button color="warning" slot="end" (click)="eliminarMascotas(i)" expand="block" shape="round">
+            Eliminar
+          </ion-button>
+          
         </ion-item>
       </ion-list>
     </ion-card-content>

@@ -45,4 +45,8 @@ export class ListarMascotasPage implements OnInit {
   ngOnInit() {
   }
 
+  eliminarMascotas(index:number){
+this.mascotas.splice(index,1)
+  }
+
 }
