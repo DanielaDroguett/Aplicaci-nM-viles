@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Mascotas</ion-title>
+    <ion-title>Lista de Mascotas</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,13 +10,10 @@
       <ion-title size="large">listar-mascotas</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-button color="secondary" expand="full" (click)="goHome()">Volver al Home</ion-button>
+
 
   <ion-card>
-    <ion-card-header>
-      <ion-card-title>Lista de mascotas</ion-card-title>
-      <ion-card-subtitle>Encuentra aquí el detalle de todas las mascotas registradas.</ion-card-subtitle>
-    </ion-card-header>
-
     <!-- Lista de mascotas -->
     <ion-card-content>
       <ion-list>

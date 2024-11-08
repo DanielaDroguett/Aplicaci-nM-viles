@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonGrid, IonRow, IonCol, IonButton } from '@ionic/angular/standalone';
 
 
@@ -40,8 +41,13 @@ export class ListarMascotasPage implements OnInit {
   ];
 
 
-  constructor() { }
+  constructor(private router: Router) { }
 
+  // Método para redirigir al Home
+  goHome() {
+    this.router.navigate(['/home']);
+  }
+  
   ngOnInit() {
   }
 
