@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular'; // Importa el módulo completo de Ionic
-
+import { addIcons} from 'ionicons';
+import { add,listOutline } from 'ionicons/icons';
 @Component({
   standalone: true,
   selector: 'app-animal-form',
@@ -26,7 +27,10 @@ export class AnimalFormPage {
     alergias: ''
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) { 
+    addIcons({add,listOutline});
+
+  }
 
   // Método para redirigir al Home
   goHome() {
@@ -36,9 +40,17 @@ export class AnimalFormPage {
   cerrarFormulario() {
     // Lógica para cerrar el formulario
   }
-
+  
   onSubmit() {
     console.log('Datos del animal:', this.animal);
     // Lógica para guardar el formulario
+  }
+
+  goToCreate(){
+    this.router.navigate(['/animal-form']);
+  }
+
+  goToRandom(){
+    this.router.navigate(['/listar-mascotas'])
   }
 }

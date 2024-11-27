@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonGrid, IonRow, IonCol, IonButton, IonButtons, IonIcon, IonBackButton } from '@ionic/angular/standalone';
-
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonGrid, IonRow, IonCol, IonButton, IonButtons, IonIcon, IonBackButton, IonFab, IonFabButton } from '@ionic/angular/standalone';
+import { addIcons} from 'ionicons';
+import { add,wineOutline } from 'ionicons/icons';
 
 // Definición de la interfaz 'Mascota'
 export interface Mascota {
@@ -27,7 +28,7 @@ export enum Sexo {
   templateUrl: './listar-mascotas.page.html',
   styleUrls: ['./listar-mascotas.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonGrid, IonRow, IonCol, IonButton, IonButtons, IonIcon, IonBackButton]
+  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent, IonList, IonItem, IonThumbnail, IonLabel, IonGrid, IonRow, IonCol, IonButton, IonButtons, IonIcon, IonBackButton, IonFab, IonFabButton]
 })
 
 // Arreglo mascotas ->Lista de objetos
@@ -41,7 +42,9 @@ export class ListarMascotasPage implements OnInit {
   ];
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    addIcons({add,wineOutline});
+   }
 
   // Método para redirigir al Home
   goHome() {
@@ -51,6 +54,12 @@ export class ListarMascotasPage implements OnInit {
   ngOnInit() {
   }
 
+  goToCreate(){
+    this.router.navigate(['/animal-form']);
+  }
+  goToRandom(){
+    this.router.navigate(['/random'])
+  }
   eliminarMascotas(index: number) {
     this.mascotas.splice(index, 1);
   }
