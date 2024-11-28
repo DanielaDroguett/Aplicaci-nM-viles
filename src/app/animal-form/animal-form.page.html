@@ -41,7 +41,21 @@
       <ion-textarea [(ngModel)]="animal.alergias" name="alergias"></ion-textarea>
     </ion-item>
 
-    <!-- Botón de guardar con validación -->
-    <ion-button expand="full" type="submit" [disabled]="!animal.nombre || !animal.especie">Guardar</ion-button>
+    <ion-button expand="full" type="submit">Guardar</ion-button>
   </form>
+
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+    <ion-fab-button (click)="goToRandom()">
+      <ion-icon name="list-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToCreate()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+   -->
+
+   <ion-button expand="block">Tomar foto y obtener ubicación</ion-button>
+   <br>
 </ion-content>
