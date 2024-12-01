@@ -7,7 +7,11 @@ export const routes: Routes = [
   },
   {
     path: '',
+<<<<<<< HEAD
     redirectTo: 'home',
+=======
+    redirectTo: 'login',
+>>>>>>> 2886ce30bcb35fb04dfdfae404625d75bb23f5d2
     pathMatch: 'full',
   },
   {
@@ -18,5 +22,21 @@ export const routes: Routes = [
     path: 'listar-mascotas',
     loadComponent: () => import('./pages/listar-mascotas/listar-mascotas.page').then( m => m.ListarMascotasPage)
   },
+<<<<<<< HEAD
+=======
+  {
+    path: 'login',
+    loadComponent: () => import('./pages/login/login.page').then( m => m.LoginPage)
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
+  },  {
+    path: 'register',
+    loadComponent: () => import('./pages/register/register.page').then( m => m.RegisterPage)
+  },
+
+
+>>>>>>> 2886ce30bcb35fb04dfdfae404625d75bb23f5d2
 
 ];
